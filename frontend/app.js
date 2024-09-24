@@ -42,10 +42,14 @@ class Chatbox {
         if (text1 === "") {
             return; // Prevents sending empty messages
         }
-    
+        
+        // Show user message immediately
         let msg1 = { name: "User", message: text1 };
         this.messages.push(msg1);
+        this.updateChatText(chatbox); // Update chat with the user's message immediately
+        textField.value = ''; // Clear input field right after sending the user message
     
+        // Make the API call after showing the user message
         fetch('http://127.0.0.1:8000/ask', {
             method: 'POST',
             body: JSON.stringify({ question: text1 }),
@@ -57,17 +61,17 @@ class Chatbox {
         .then(r => r.json())
         .then(r => {
             console.log(r);
-            console.log("Sending message:", text1);
-            let msg2 = { name: "Sam", message: r.response  }; // Ensure your API returns this
+            let msg2 = { name: "Sam", message: r.response }; // Display response from API
             this.messages.push(msg2);
-            this.updateChatText(chatbox);
-            textField.value = ''; // Clear the input field after sending
+            this.updateChatText(chatbox); // Update chat with the API response
         }).catch((error) => {
             console.error('Error:', error);
-            this.updateChatText(chatbox);
-            textField.value = ''; // Clear input field on error
+            let errorMsg = { name: "Sam", message: "Sorry, something went wrong." };
+            this.messages.push(errorMsg);
+            this.updateChatText(chatbox); // Update chat with error message
         });
     }
+    
 
     updateChatText(chatbox) {
         var html = '';
