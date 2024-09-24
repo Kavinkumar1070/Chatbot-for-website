@@ -38,34 +38,35 @@ class Chatbox {
 
     onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
-        let text1 = textField.value
+        let text1 = textField.value;
         if (text1 === "") {
-            return;
+            return; // Prevents sending empty messages
         }
-
-        let msg1 = { name: "User", message: text1 }
+    
+        let msg1 = { name: "User", message: text1 };
         this.messages.push(msg1);
-
+    
         fetch('http://127.0.0.1:8000/ask', {
             method: 'POST',
-            body: JSON.stringify({ message: text1 }),
+            body: JSON.stringify({ question: text1 }),
             mode: 'cors',
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
-          })
-          .then(r => r.json())
-          .then(r => {
-            let msg2 = { name: "Sam", message: r.answer };
+        })
+        .then(r => r.json())
+        .then(r => {
+            console.log(r);
+            console.log("Sending message:", text1);
+            let msg2 = { name: "Sam", message: r.response  }; // Ensure your API returns this
             this.messages.push(msg2);
-            this.updateChatText(chatbox)
-            textField.value = ''
-
+            this.updateChatText(chatbox);
+            textField.value = ''; // Clear the input field after sending
         }).catch((error) => {
             console.error('Error:', error);
-            this.updateChatText(chatbox)
-            textField.value = ''
-          });
+            this.updateChatText(chatbox);
+            textField.value = ''; // Clear input field on error
+        });
     }
 
     updateChatText(chatbox) {
