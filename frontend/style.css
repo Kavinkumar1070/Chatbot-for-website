@@ -3,20 +3,21 @@
     margin: 0;
     padding: 0;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Poppins', sans-serif; 
     font-weight: 400;
     font-size: 100%;
     background: #F1F1F1;
+    background-image: url("/frontend/images/converse.png");
 }
 
 *, html {
-    --primaryGradient: linear-gradient(93.12deg, #581B98 0.52%, #9C1DE7 100%);
-    --secondaryGradient: linear-gradient(268.91deg, #581B98 -2.14%, #9C1DE7 99.69%);
+    --primaryGradient: linear-gradient(93.12deg, #0579d8 0.52%, #0579d8 100%);
+    --secondaryGradient: linear-gradient(268.91deg, #0579d8 -2.14%, #0579d8 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-    --primary: #581B98;
+    --primary: #0579d8;
 }
 
 /* CHATBOX
@@ -34,8 +35,8 @@ body {
     background: #eee;
     width: 300px;
     height: 350px;
-    z-index: -123456;
     opacity: 0;
+    z-index: -123456;
     transition: all .5s ease-in-out;
 }
 
@@ -72,7 +73,7 @@ body {
 .chatbox__messages {
     margin-top: auto;
     display: flex;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction: column-reverse;
 }
 
@@ -104,6 +105,21 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
+.chatbox__send--footer {
+    background-color: #ffff; /* Customize button color */
+    color: rgb(22, 21, 21); /* Icon and text color */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbox__send--footer i {
+    margin-left: 5px; /* Space between text and icon */
+}
 
 /* HEADER */
 .chatbox__header {
@@ -120,6 +136,8 @@ body {
 
 .chatbox__image--header {
     margin-right: 10px;
+    background-color:#6fcacf ;
+    border-radius: 20px;
 }
 
 .chatbox__heading--header {
@@ -181,9 +199,6 @@ body {
     text-align: left;
 }
 
-.chatbox__send--footer {
-    color: white;
-}
 
 .chatbox__button button,
 .chatbox__button button:focus,
