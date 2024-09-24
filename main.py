@@ -53,21 +53,45 @@ app.add_middleware(
 class QueryRequest(BaseModel):
     question: str
 
+# Predefined questions and their responses
+predefined_responses = {
+    "hi": "Hello! How can I assist you today?",
+    "bye": "Goodbye! Have a great day!",
+    "help": "I'm here to help! You can ask me about Company."
+}
 
 # Load the website content and prepare the database
 def prepare_database():
     ABS_PATH = os.path.dirname(os.path.abspath(__file__))
     DB_DIR = os.path.join(ABS_PATH, "db")
 
-    # Load website content
+    # # Load website content
+    # loader = WebBaseLoader(web_paths=("https://www.conversedatasolutions.com/",))
+    # doc = loader.load()
+    
+    important_pages = [
+    "https://www.conversedatasolutions.com/technology",
+    "https://www.conversedatasolutions.com/contact-us",
+    "https://www.conversedatasolutions.com/services/data-visualization",
+    "https://www.conversedatasolutions.com/services/web-development",
+    "https://www.conversedatasolutions.com/services/data-engineering",
+    "https://www.conversedatasolutions.com/services/digital-lcnc",
+    "https://www.conversedatasolutions.com/services/data-science&machine-learning",
+    "https://www.conversedatasolutions.com/services/artificial-intelligence"
+    ]
+    loader = WebBaseLoader(web_paths=important_pages)
+    important_docs = loader.load()
+    
     loader = WebBaseLoader(web_paths=("https://www.conversedatasolutions.com/",))
-    doc = loader.load()
+    full_site_docs = loader.load()
+    
+    all_docs = important_docs + full_site_docs
 
-    if len(doc) == 0:
+    if len(all_docs) == 0:
         raise Exception("No documents were retrieved from the website.")
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    splits = text_splitter.split_documents(doc)
+    splits = text_splitter.split_documents(all_docs)
 
     if len(splits) == 0:
         raise Exception("No document chunks were created.")
@@ -87,7 +111,12 @@ vectorstore = prepare_database()
 
 @app.post("/ask")
 async def ask_question(query: QueryRequest):
-    prompt = query.question
+    prompt = query.question.lower()  # Convert question to lowercase to handle case insensitivity
+
+    # Check if the question matches any predefined responses
+    if prompt in predefined_responses:
+        return {"response": predefined_responses[prompt]}
+    
     retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
     # Get relevant documents based on the user's query
@@ -107,9 +136,12 @@ async def ask_question(query: QueryRequest):
                     timeout=None)
     # Refine the system prompt to specifically focus on answering the question
     system_prompt = (
-        "You are an assistant. Answer the question based on the following context. "
-        "If the answer is not available in the context, say you don't know.\n\n{context}"
-    )
+    "You are a helpful assistant for Converse Data Solutions. Answer questions about the company, "
+    "its services, products, and contact information based on the following context:\n\n{context}\n\n"
+    "If you don't know the answer, say you don't know. Use concise, clear language."
+)
+
+
 
     chat_prompt = ChatPromptTemplate.from_messages(
         [("system", system_prompt), ("human", "{input}")]
