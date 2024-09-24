@@ -12,7 +12,6 @@ from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 # Load environment variables from .env file (Optional)
 load_dotenv()
 
-OPENAI_API_KEY= os.getenv("OPENAI_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # FastAPI app
@@ -24,14 +23,13 @@ If you don't know the answer, just say that you don't know, don't try to make up
 
 # Create prompt templates
 class QueryRequest(BaseModel):
-    url: str
     prompt: str
 
 @app.post("/process_website/")
 async def process_website(query: QueryRequest):
     try:
         # Extract inputs from the request body
-        url = query.url
+        url = "https://www.conversedatasolutions.com/"
         prompt = query.prompt
 
         # Create directory for db

@@ -1,7 +1,5 @@
-Flask 
 torch 
 torchvision 
-nltk
 langchain
 langchainhub
 streamlit
@@ -9,7 +7,6 @@ bs4
 chromadb
 tiktoken
 unstructured
-chainlit
 libmagic
 langchain-community
 langchain-groq
@@ -18,3 +15,6 @@ langchain_huggingface
 
 langchain-text-splitters
 langchain-chroma
+
+fastapi
+uvicorn
