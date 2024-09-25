@@ -36,13 +36,17 @@ class Chatbox {
         }
 
         document.querySelector('.send__button').addEventListener('click', function() {
+            console.log("button")
             // Select the image element inside the chatbox header using the correct class
-            const botImage = document.querySelector('.responsive-img');
+            const botImage = document.querySelector('.botim');
             
             if (botImage) {
+                console.log("bot")
                 botImage.style.display = "none"; // Hide the image by setting display to 'none'
             }
-            
+            else{
+                console.log("sdrfwsedfsdf")
+            }
             // Other functionality like sending the message...
             sendMessage(); // Function that handles sending the message
         });
