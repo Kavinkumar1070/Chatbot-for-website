@@ -1,7 +1,7 @@
 class Chatbox {
     constructor() {
         this.args = {
-            openButton: document.querySelector('.chatbox__button'),
+            openButton: document.querySelector('.btnbot'),
             chatBox: document.querySelector('.chatbox__support'),
             sendButton: document.querySelector('.send__button')
         }
@@ -34,7 +34,22 @@ class Chatbox {
         } else {
             chatbox.classList.remove('chatbox--active')
         }
+
+        document.querySelector('.send__button').addEventListener('click', function() {
+            // Select the image element inside the chatbox header using the correct class
+            const botImage = document.querySelector('.responsive-img');
+            
+            if (botImage) {
+                botImage.style.display = "none"; // Hide the image by setting display to 'none'
+            }
+            
+            // Other functionality like sending the message...
+            sendMessage(); // Function that handles sending the message
+        });
+        
+        
     }
+    
 
     onSendButton(chatbox) {
         var textField = chatbox.querySelector('input');
@@ -92,5 +107,28 @@ class Chatbox {
 }
 
 
+
 const chatbox = new Chatbox();
 chatbox.display();
+
+function toggleChat() {
+    const chatIcon = document.getElementById('chat-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const chatboxSupport = document.querySelector('.chatbox__support');
+
+    // Toggle chatbox visibility
+    if (chatboxSupport.classList.contains('chatbox--active')) {
+        chatboxSupport.classList.remove('chatbox--active');
+        chatIcon.style.display = 'inline';  // Show the chat icon
+        closeIcon.style.display = 'none';   // Hide the close (X) symbol
+    } else {
+        chatboxSupport.classList.add('chatbox--active');
+        chatIcon.style.display = 'none';    // Hide the chat icon
+        closeIcon.style.display = 'inline'; // Show the close (X) symbol
+    }
+}
+
+function closeTooltip() {
+    const tooltip = document.getElementById('btnbot-tip');
+    tooltip.style.display = 'none';
+}

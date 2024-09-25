@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\conve\ZA_Project\success\Chatbot-for-website\myvenv
+set VIRTUAL_ENV=C:\Users\Converse\OneDrive - CONVERSE Data Solutions\cahtbot-web\Chatbot-for-website\myvenv
 
 if not defined PROMPT set PROMPT=$P$G
 
