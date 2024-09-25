@@ -67,6 +67,11 @@ class Chatbox {
         this.messages.push(msg1);
         this.updateChatText(chatbox); // Update chat with the user's message immediately
         textField.value = ''; // Clear input field right after sending the user message
+        
+        // Show loading message
+        let loadingMsg = { name: "bot", message: 'Loading  <div class="wave-loader"><span></span> <span></span> <span></span> </div>' };
+        this.messages.push(loadingMsg);
+        this.updateChatText(chatbox); // Update chat to show loading message
     
         // Make the API call after showing the user message
         fetch('http://127.0.0.1:8000/ask', {
@@ -80,11 +85,15 @@ class Chatbox {
         .then(r => r.json())
         .then(r => {
             console.log(r);
+            // Remove loading message
+            this.messages.pop(); // Remove the last (loading) message
             let msg2 = { name: "bot", message: r.response }; // Display response from API
             this.messages.push(msg2);
             this.updateChatText(chatbox); // Update chat with the API response
         }).catch((error) => {
             console.error('Error:', error);
+            // Remove loading message
+            this.messages.pop(); // Remove the last (loading) message
             let errorMsg = { name: "bot", message: "Sorry, something went wrong." };
             this.messages.push(errorMsg);
             this.updateChatText(chatbox); // Update chat with error message
@@ -94,20 +103,20 @@ class Chatbox {
 
     updateChatText(chatbox) {
         var html = '';
-        this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "bot")
-            {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+        this.messages.slice().reverse().forEach(function(item) {
+            if (item.name === "bot") {
+                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>';
+            } else if (item.message === "Loading...") {
+                html += '<div class="messages__item messages__item--visitor loading-message">' + item.message + '</div>'; // Add specific class for loading message
+            } else {
+                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>';
             }
-            else
-            {
-                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
-            }
-          });
-
+        });
+    
         const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
     }
+    
 }
 
 
