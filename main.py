@@ -56,9 +56,24 @@ class QueryRequest(BaseModel):
 # Predefined questions and their responses
 predefined_responses = {
     "hi": "Hello! How can I assist you today?",
+    "hello": "Hello! How can I assist you today?",
+    "hey": "Hi there! How can I help you?",
     "bye": "Goodbye! Have a great day!",
-    "help": "I'm here to help! You can ask me about Company."
+    "goodbye": "Goodbye! Take care!",
+    "help": "I'm here to help! You can ask me about our company.",
+    "thanks": "You're welcome! If you have more questions, feel free to ask.",
+    "thank you": "You're welcome! I'm here to assist you.",
+    "how are you?": "I'm just a program, but thanks for asking! How can I assist you?",
+    "what's up?": "Not much! How can I help you today?",
+    "what can you do?": "I can assist you with questions about our company and services.",
+    "tell me about yourself": "I'm a virtual assistant here to help with your queries.",
+    "can you help me?": "Of course! Please ask your question.",
+    "hi there": "Hello! How can I help you today?",
+    "good morning": "Good morning! How can I assist you?",
+    "good evening": "Good evening! How can I help you?",
+    "welcome": "Welcome! How can I assist you today?"
 }
+
 
 # Load the website content and prepare the database
 def prepare_database():
@@ -136,9 +151,11 @@ async def ask_question(query: QueryRequest):
                     timeout=None)
     # Refine the system prompt to specifically focus on answering the question
     system_prompt = (
-    "You are a helpful assistant for Converse Data Solutions. Answer questions about the company, "
-    "its services, products, and contact information based on the following context:\n\n{context}\n\n"
-    "If you don't know the answer, say you don't know. Use concise, clear language."
+    "You are a helpful assistant for Converse Data Solutions. Your responses depend on the user's query:\n"
+    "1. If the query relates to website details, provide a concise answer based on the context.\n"
+    "2. If the query is unclear or doesn't have meaning, respond with a concise request for clarification.\n"
+    "3. If you don't know the answer, simply say you don't know.\n"
+    "Use clear and concise language based on the following context:\n\n{context}\n\n"
 )
 
 
