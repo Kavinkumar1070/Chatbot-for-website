@@ -35,22 +35,22 @@ class Chatbox {
             chatbox.classList.remove('chatbox--active')
         }
 
-        document.querySelector('.send__button').addEventListener('click', function() {
-            console.log("button")
-            // Select the image element inside the chatbox header using the correct class
-            const botImage = document.querySelector('.botim');
-            
-            if (botImage) {
-                console.log("bot")
-                botImage.style.display = "none"; // Hide the image by setting display to 'none'
+    function hideElement() {
+            const element = document.querySelector('.botim');
+            if (element) {
+                element.style.display = 'none';
             }
-            else{
-                console.log("sdrfwsedfsdf")
-            }
-            // Other functionality like sending the message...
-            sendMessage(); // Function that handles sending the message
-        });
+        }
         
+        // Event listener for the button click
+        document.querySelector('.send__button').addEventListener('click', hideElement);
+        
+        // Event listener for the Enter key press
+        document.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                hideElement();
+            }
+        });
         
     }
     
@@ -80,12 +80,12 @@ class Chatbox {
         .then(r => r.json())
         .then(r => {
             console.log(r);
-            let msg2 = { name: "Sam", message: r.response }; // Display response from API
+            let msg2 = { name: "bot", message: r.response }; // Display response from API
             this.messages.push(msg2);
             this.updateChatText(chatbox); // Update chat with the API response
         }).catch((error) => {
             console.error('Error:', error);
-            let errorMsg = { name: "Sam", message: "Sorry, something went wrong." };
+            let errorMsg = { name: "bot", message: "Sorry, something went wrong." };
             this.messages.push(errorMsg);
             this.updateChatText(chatbox); // Update chat with error message
         });
@@ -95,7 +95,7 @@ class Chatbox {
     updateChatText(chatbox) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
+            if (item.name === "bot")
             {
                 html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             }
