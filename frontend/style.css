@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
@@ -11,7 +12,8 @@ body {
     background-image: url("/frontend/images/converse.png");
 }
 
-*, html {
+*,
+html {
     --primaryGradient: linear-gradient(93.12deg, #0066cc 0.52%, #0066cc 100%);
     --secondaryGradient: linear-gradient(268.91deg, #0066cc -2.14%, #0066cc 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
@@ -21,7 +23,7 @@ body {
 
 /* CHATBOX
 =============== */
-.chatbox  {
+.chatbox {
     position: absolute;
     bottom: 8px;
     right: 6px
@@ -70,7 +72,8 @@ body {
     overflow-y: auto;
     flex-direction: column-reverse;
 }
-.chatbox__image--header{
+
+.chatbox__image--header {
     display: flex;
     justify-content: center;
     margin-bottom: 210px;
@@ -111,67 +114,88 @@ body {
     border-bottom-left-radius: 15px;
     transition: width 0.3s, height 0.3s;
 }
+
+
+/* For mobile devices */
+
+@media (max-width: 1025px) {
+    .container {
+        position: relative;
+        top: 860px;
+    }
+
+}
+
+@media (max-width: 1440px) {
+    .container {
+        position: relative;
+        top: 860px;
+    }
+
+}
+
+@media (max-width: 1025px) {
+    .chatbox {
+        height: 600px;
+        width: 100%;
+        /* Take 90% of the screen width */
+        max-width: 390px;
+        /* Ensure it doesn't get too large */
+        /* Reduce shadow for smaller screens */
+    }
+}
+
+@media (max-width: 1440px) {
+
+    .chatbox__support,
+    .chatbox {
+        height: 750px;
+        width: 100%;
+        /* Take 90% of the screen width */
+        max-width: 390px;
+        ;
+        /* Ensure it doesn't get too large */
+        /* Reduce shadow for smaller screens */
+    }
+}
+
 @media (max-width: 768px) {
-    .chatbox__support,.chatbox {
+
+    .chatbox__support,
+    .chatbox {
         height: 400px;
         width: 350px;
     }
 }
 
-/* For mobile devices */
 @media (max-width: 480px) {
-    .chatbox__support,.chatbox {
-        height: 500px;
-        width: 90%; /* Take 90% of the screen width */
-        max-width: 390px; /* Ensure it doesn't get too large */ /* Reduce shadow for smaller screens */
-    }
-}
-@media (max-width: 1025px) {
-    .container {
-        position: relative;
-        top: 860px;
-    }
-
-}
-@media (max-width: 1440px) {
-    .container {
-        position: relative;
-        top: 860px;
-    }
-
-}
-@media (max-width: 1025px) {
+    .chatbox__support,
     .chatbox {
-        height: 600px;
-        width: 100%; /* Take 90% of the screen width */
-        max-width: 390px; /* Ensure it doesn't get too large */
-       /* Reduce shadow for smaller screens */
-    }
-}
-@media (max-width: 1440px) {
-    .chatbox__support,.chatbox{
-        height: 750px;
-        width: 100%; /* Take 90% of the screen width */
-        max-width: 390px;; /* Ensure it doesn't get too large */
-     /* Reduce shadow for smaller screens */
+        height: 500px;
+        width: 90%;
+        max-width: 390px;
     }
 }
 
 @media (max-width: 1440px) {
     .btnbot-tooltip {
-        margin-right:100px;
+        margin-right: 100px;
         bottom: 0px;
     }
 }
+
 @media (max-width: 2560px) {
     .btnbot-tooltip {
-        margin-right:100px;
+        margin-right: 100px;
         bottom: 0px;
     }
 }
+
 .chatbox__send--footer {
-    background-color: #ffff; /* Customize button color */
-    color: rgb(22, 21, 21); /* Icon and text color */
+    background-color: #ffff;
+    /* Customize button color */
+    color: rgb(22, 21, 21);
+    /* Icon and text color */
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -182,7 +206,8 @@ body {
 }
 
 .chatbox__send--footer i {
-    margin-left: 5px; /* Space between text and icon */
+    margin-left: 5px;
+    /* Space between text and icon */
 }
 
 /* HEADER */
@@ -244,13 +269,13 @@ body {
     justify-content: space-between;
     padding: 5px;
     /*box-shadow:  0px -10px 15px rgba(0, 0, 0, 0.1);*/
-    border-top:2px groove rgba(0, 0, 0, 0.1);
+    border-top: 2px groove rgba(0, 0, 0, 0.1);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     margin-top: 20px;
 }
 
-.chatbox__footer input  {
+.chatbox__footer input {
     width: 80%;
     font-size: 20px;
     padding: 15px 10px;
@@ -258,7 +283,7 @@ body {
     text-align: left;
 }
 
-.chatbox__footer input:focus-visible{
+.chatbox__footer input:focus-visible {
     border: none !important;
     outline: none !important;
 }
@@ -284,7 +309,7 @@ body {
     background-color: #fff;
     border-radius: 8px;
     bottom: 0px;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,.25);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .25);
     height: 60px;
     right: 0px;
     top: 770px;
@@ -302,7 +327,7 @@ body {
 .btnbot-tooltip:before {
     background-color: inherit;
     bottom: 0;
-    box-shadow: -2px -2px 5px 0 rgba(0,0,0,.08);
+    box-shadow: -2px -2px 5px 0 rgba(0, 0, 0, .08);
     content: "";
     height: 10px;
     margin: auto;
@@ -315,7 +340,9 @@ body {
 }
 
 @keyframes zsiqcntanim {
-    0%,60% {
+
+    0%,
+    60% {
         opacity: 0;
         transform: translateX(20px)
     }
@@ -339,7 +366,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .wave-loader span {
@@ -366,13 +393,14 @@ body {
 }
 
 @keyframes wave {
-    0%, 60%, 100% {
+
+    0%,
+    60%,
+    100% {
         transform: translateY(0);
     }
+
     30% {
         transform: translateY(-10px);
     }
 }
-
-
-
