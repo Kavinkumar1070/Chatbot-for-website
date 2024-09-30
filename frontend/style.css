@@ -29,11 +29,6 @@ body {
 
 /* CONTENT IS CLOSE */
 .chatbox__support {
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    width: 300px;
-    height: 350px;
     opacity: 0;
     z-index: -123456;
     transition: all .5s ease-in-out;
@@ -70,10 +65,16 @@ body {
 
 /* MESSAGES */
 .chatbox__messages {
-    margin-top: auto;
+    height: 800px;
     display: flex;
     overflow-y: auto;
     flex-direction: column-reverse;
+}
+.chatbox__image--header{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 210px;
+
 }
 
 .messages__item {
@@ -100,6 +101,8 @@ body {
 .chatbox__support {
     background: #ffffff;
     height: 750px;
+    display: flex;
+    flex-direction: column;
     width: 430px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 15px;
@@ -109,19 +112,61 @@ body {
     transition: width 0.3s, height 0.3s;
 }
 @media (max-width: 768px) {
-    .chatbox__support {
-        height: 600px;
+    .chatbox__support,.chatbox {
+        height: 400px;
         width: 350px;
     }
 }
 
 /* For mobile devices */
 @media (max-width: 480px) {
-    .chatbox__support {
+    .chatbox__support,.chatbox {
         height: 500px;
         width: 90%; /* Take 90% of the screen width */
-        max-width: 400px; /* Ensure it doesn't get too large */
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Reduce shadow for smaller screens */
+        max-width: 390px; /* Ensure it doesn't get too large */ /* Reduce shadow for smaller screens */
+    }
+}
+@media (max-width: 1025px) {
+    .container {
+        position: relative;
+        top: 860px;
+    }
+
+}
+@media (max-width: 1440px) {
+    .container {
+        position: relative;
+        top: 860px;
+    }
+
+}
+@media (max-width: 1025px) {
+    .chatbox {
+        height: 600px;
+        width: 100%; /* Take 90% of the screen width */
+        max-width: 390px; /* Ensure it doesn't get too large */
+       /* Reduce shadow for smaller screens */
+    }
+}
+@media (max-width: 1440px) {
+    .chatbox__support,.chatbox{
+        height: 750px;
+        width: 100%; /* Take 90% of the screen width */
+        max-width: 390px;; /* Ensure it doesn't get too large */
+     /* Reduce shadow for smaller screens */
+    }
+}
+
+@media (max-width: 1440px) {
+    .btnbot-tooltip {
+        margin-right:100px;
+        bottom: 0px;
+    }
+}
+@media (max-width: 2560px) {
+    .btnbot-tooltip {
+        margin-right:100px;
+        bottom: 0px;
     }
 }
 .chatbox__send--footer {
@@ -151,15 +196,6 @@ body {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     box-shadow: var(--primaryBoxShadow);
-}
-
-.chatbox__image--header {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center;
 }
 
 .chatbox__heading--header {
@@ -247,9 +283,11 @@ body {
     animation: zsiqcntanim 1s ease-in-out;
     background-color: #fff;
     border-radius: 8px;
-    bottom: 0;
+    bottom: 0px;
     box-shadow: 0 0 20px 0 rgba(0,0,0,.25);
     height: 60px;
+    right: 0px;
+    top: 770px;
     line-height: 1.3;
     margin-bottom: 5px;
     margin-left: 40px;
@@ -335,5 +373,6 @@ body {
         transform: translateY(-10px);
     }
 }
+
 
 

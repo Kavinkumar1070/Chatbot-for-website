@@ -135,6 +135,8 @@ function toggleChat() {
         chatIcon.style.display = 'inline';  // Show the chat icon
         closeIcon.style.display = 'none';   // Hide the close (X) symbol
     } else {
+        console.log("sdfwsfwe")
+        chatboxSupport.classList.remove('hidden');
         chatboxSupport.classList.add('chatbox--active');
         chatIcon.style.display = 'none';    // Hide the chat icon
         closeIcon.style.display = 'inline'; // Show the close (X) symbol
