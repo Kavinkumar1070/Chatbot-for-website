@@ -12,6 +12,6 @@ langchain_huggingface
 langchain_groq
 sentence_transformers
 Jinja2
-
+python-dotenv 
 fastapi
 uvicorn

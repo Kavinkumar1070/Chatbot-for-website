@@ -27,7 +27,7 @@ os.environ["LANGCHAIN_API_KEY"] = "lsv2_pt_10c9ebd981bc4c6aab316ca314185c35_39b0
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
 os.environ["LANGCHAIN_PROJECT"] = "RAG_With_Memory"
 os.environ["GOOGLE_API_KEY"] = "AIzaSyCXx_qxtPPghstnxkm8ehgU_N_hhmjvmq0"
-os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = "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"
 
 # Create FastAPI app
 app = FastAPI()
